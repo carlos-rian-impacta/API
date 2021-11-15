@@ -9,6 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 
 database_uri = _ge("DATABASE_URI")
 
+print(database_uri)
+
 Engine = create_engine(database_uri)
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=Engine)
