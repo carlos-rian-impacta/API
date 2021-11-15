@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: app-product
+    build: 
+      context: .
+      dockerfile: ./dockerfile
+    env_file: .env-docker
+    ports: 
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      - default
+      - backend
+
+  db:
+    image: postgres:12-alpine
+    container_name: database-postgres-product
+    env_file: .env-docker
+    ports:
+      - 5433:5432
+    networks:
+      - default
+      - backend
+
+networks: 
+  backend:
